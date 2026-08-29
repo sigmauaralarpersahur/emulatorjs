@@ -1,56 +1,6 @@
 <html>
 
 <head>
-    <script>
-        (async function() {
-            const fallbackUrls = [
-                "https://cdn.jsdelivr.net/gh/marty-games/",
-                "https://fastly.jsdelivr.net/gh/marty-games/",
-                "https://gcore.jsdelivr.net/gh/marty-games/",
-                "https://testingcf.jsdelivr.net/gh/marty-games/",
-                "https://quantil.jsdelivr.net/gh/marty-games/",
-                "https://originfastly.jsdelivr.net/gh/marty-games/",
-                "https://esm.sh/gh/marty-games/",
-                "https://cdn.statically.io/gh/marty-games/",
-                "https://cdn.staticdelivr.com/gh/marty-games/"
-            ];
-
-            const pathSuffix = "mga-emulatorjs@main/gbc/resident-evil-gaiden/";
-            let chosenBase = fallbackUrls[0];
-
-            for (const url of fallbackUrls) {
-                try {
-                    const controller = new AbortController();
-                    const timeoutId = setTimeout(() => controller.abort(), 2500);
-
-                    const response = await fetch(url + pathSuffix + "index.html", {
-                        method: "HEAD",
-                        mode: "cors",
-                        signal: controller.signal
-                    });
-
-                    clearTimeout(timeoutId);
-
-                    if (response.ok) {
-                        chosenBase = url;
-                        break;
-                    }
-                } catch (e) {
-                    console.warn(`${url} failed, trying next fallback...`);
-                }
-            }
-
-            const finalBaseUrl = chosenBase + pathSuffix;
-            let base = document.querySelector("base") || document.createElement("base");
-            base.href = finalBaseUrl;
-
-            if (!document.querySelector("base")) {
-                document.head.prepend(base);
-            }
-
-            console.log("Base URL successfully set to: " + finalBaseUrl);
-        })();
-    </script>
     <script src="//www.google.com/jsapi"></script>
     <script>
         window.parent.maeExportApis_();
@@ -130,7 +80,7 @@
             EJS_startOnLoaded = true;
             EJS_pathtodata = "https://gcore.jsdelivr.net/gh/martinmmcyt/emulatorjs@master/";
             EJS_gameUrl =
-                "Resident-Evil-Gaiden.zip";
+                "https://gcore.jsdelivr.net/gh/sigmauaralarpersahur/emulatorjs@main/gbc/resident-evil-gaiden/Resident-Evil-Gaiden.zip";
             loadGame();
         }
         document
