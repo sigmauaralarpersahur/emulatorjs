@@ -1,56 +1,7 @@
 <html>
 
 <head>
-    <script>
-        (async function() {
-            const fallbackUrls = [
-                "https://cdn.jsdelivr.net/gh/",
-                "https://fastly.jsdelivr.net/gh/",
-                "https://gcore.jsdelivr.net/gh/",
-                "https://testingcf.jsdelivr.net/gh/",
-                "https://quantil.jsdelivr.net/gh/",
-                "https://originfastly.jsdelivr.net/gh/",
-                "https://esm.sh/gh/",
-                "https://cdn.statically.io/gh/",
-                "https://cdn.staticdelivr.com/gh/"
-            ];
-
-            const pathSuffix = "marty-games/mga-emulatorjs@main/nes/galaga/";
-            let chosenBase = fallbackUrls[0];
-
-            for (const url of fallbackUrls) {
-                try {
-                    const controller = new AbortController();
-                    const timeoutId = setTimeout(() => controller.abort(), 2500);
-
-                    const response = await fetch(url + pathSuffix + "index.html", {
-                        method: "HEAD",
-                        mode: "cors",
-                        signal: controller.signal
-                    });
-
-                    clearTimeout(timeoutId);
-
-                    if (response.ok) {
-                        chosenBase = url;
-                        break;
-                    }
-                } catch (e) {
-                    console.warn(`${url} failed, trying next fallback...`);
-                }
-            }
-
-            const finalBaseUrl = chosenBase + pathSuffix;
-            let base = document.querySelector("base") || document.createElement("base");
-            base.href = finalBaseUrl;
-
-            if (!document.querySelector("base")) {
-                document.head.prepend(base);
-            }
-
-            console.log("Base URL successfully set to: " + finalBaseUrl);
-        })();
-    </script>
+    <base href="https://gcore.jsdelivr.net/gh/sigmauaralarpersahur/emulatorjs@main/nes/galaga/">
     <script src="//www.google.com/jsapi"></script>
     <script>
         window.parent.maeExportApis_();
@@ -128,9 +79,9 @@
             EJS_core = "nes";
             EJS_color = "#000000";
             EJS_startOnLoaded = true;
-            EJS_pathtodata = "https://gcore.jsdelivr.net/gh/martinmmcyt/emulatorjs@master/";
+            EJS_pathtodata = "https://gcore.jsdelivr.net/gh/martinmmcyt/emulatorjs/";
             EJS_gameUrl =
-                "Galaga (Europe).zip";
+                "https://gcore.jsdelivr.net/gh/sigmauaralarpersahur/emulatorjs@main/nes/galaga/Galaga (Europe).zip";
             loadGame();
         }
         document
@@ -139,7 +90,7 @@
 
         function loadGame() {
             var script = document.createElement("script");
-            script.src = "https://gcore.jsdelivr.net/gh/martinmmcyt/emulatorjs@master/loader.js";
+            script.src = "https://gcore.jsdelivr.net/gh/martinmmcyt/emulatorjs/loader.js";
             document.body.appendChild(script);
         }
     </script>
